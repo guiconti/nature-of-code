@@ -19,11 +19,13 @@ jobs:
 workflows:
   build-and-deploy:
     jobs:
-      - build
+      - build:
+        name: build
       - deploy:
+        name: deploy
         filters:
           branches:
             only:
               - master
         requires:
-            - build
+          - build
