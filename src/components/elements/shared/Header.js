@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles/header.scss';
 
-const Header = ({ title }) => {
+const Header = ({ children }) => {
   return (
     <div>
-      <h2 className="alt-header">
-        {title}
+      <h2 className="header">
+        {children}
       </h2>
     </div>
   );
 };
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired
 };
 
 export default Header;

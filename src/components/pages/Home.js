@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../elements/shared/Header';
 
 const HomePage = () => {
   return (
     <div>
-      <h1>Nature of code</h1>
+      <Header>Nature of code</Header>
     </div>
   );
 };
