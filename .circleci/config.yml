@@ -18,11 +18,10 @@ jobs:
       - run: npm run deploy
 workflows:
   build-and-deploy:
-    triggers:
-      filters:
-        branches:
-          only:
-            - master
     jobs:
       - build
-      - deploy
+      - deploy:
+        filters:
+          branches:
+            only:
+              - master
