@@ -9,14 +9,21 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run:
-              name: Installing dependencies
-              command: npm install
-
-            - run:
-              name: Build project
-              command: npm build
+            - run: npm install
+            - run: npm build
+  deploy: 
+    executor:
+      name: node/default
+    steps:
+      - run: npm run deploy
 workflows:
-    build-and-deploy:
+    build:
       jobs:
         - build
+    deploy:
+      branches:
+        only:
+          - master
+          - /rc-.*/
+      jobs:
+        - deploy
