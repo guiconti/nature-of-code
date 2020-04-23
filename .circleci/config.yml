@@ -17,13 +17,12 @@ jobs:
     steps:
       - run: npm run deploy
 workflows:
-    build:
-      jobs:
-        - build
-    deploy:
-      branches:
-        only:
-          - master
-          - /rc-.*/
-      jobs:
-        - deploy
+  build-and-deploy:
+    triggers:
+      filters:
+        branches:
+          only:
+            - master
+    jobs:
+      - build
+      - deploy
