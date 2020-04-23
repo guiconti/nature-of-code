@@ -10,18 +10,18 @@ jobs:
       - node/with-cache:
         steps:
           - run:
-              name: Install dependencies
-              command: npm install
+            name: Install dependencies
+            command: npm install
           - run:
-              name: Build
-              command: npm build
+            name: Build
+            command: npm build
   deploy: 
     executor:
       name: node/default
     steps:
       - run:
-          name: Deploy
-          command: npm run deploy
+        name: Deploy
+        command: npm run deploy
 
 workflows:
   version: 2
