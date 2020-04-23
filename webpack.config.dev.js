@@ -48,10 +48,12 @@ export default {
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+        exclude: /node_modules/,
         use: ['file-loader']
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'url-loader',
@@ -64,6 +66,7 @@ export default {
       },
       {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'url-loader',
@@ -76,6 +79,7 @@ export default {
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'url-loader',
@@ -88,6 +92,7 @@ export default {
       },
       {
         test: /\.(jpe?g|png|gif|ico)$/i,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',
@@ -99,6 +104,7 @@ export default {
       },
       {
         test: /(\.css|\.scss|\.sass)$/,
+        exclude: /node_modules/,
         use: [
           'style-loader',
           {

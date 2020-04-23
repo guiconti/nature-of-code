@@ -2,7 +2,6 @@ import {createStore, compose, applyMiddleware} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import createSagaMiddleware from 'redux-saga'
 import { createBrowserHistory } from 'history';
-// 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createRootReducer from '../reducers';
 import rootSaga from '../sagas';
