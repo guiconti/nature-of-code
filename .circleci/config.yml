@@ -3,6 +3,8 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   build:
+    executor:
+      name: node/default
     steps:
       - checkout
       - node/with-cache:
@@ -10,6 +12,8 @@ jobs:
           - run: npm install
           - run: npm build
   deploy: 
+    executor:
+      name: node/default
     steps:
       - run: npm run deploy
 
@@ -23,3 +27,4 @@ workflows:
           filters:
             branches:
               only: master
+              
