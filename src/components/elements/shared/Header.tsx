@@ -1,8 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './styles/header.scss';
 
-const Header = ({ children }) => {
+export interface HeaderProps {
+  children?: string;
+}
+
+const Header = ({ children }: HeaderProps) => {
   return (
     <div>
       <h2 className="header">
@@ -10,10 +13,6 @@ const Header = ({ children }) => {
       </h2>
     </div>
   );
-};
-
-Header.propTypes = {
-  children: PropTypes.string.isRequired
 };
 
 export default Header;

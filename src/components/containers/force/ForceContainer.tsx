@@ -1,52 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Canvas from '../../elements/shared/Canvas';
 import ForceInput from '../../elements/force/ForceInput';
+import Entity from '../../../utils/Entity';
+import Vector from '../../../utils/Vector';
 
 const ForceContainer = () => {
-  class Entity {
-    constructor(size, mass, velocity, position) {
-      this.size = size;
-      this.mass = mass;
-      this.velocity = velocity;
-      this.position = position;
-    }
-    applyForce(force) {
-      //  F = m * a
-      const acceleration = new Vector(force);
-      acceleration.divide(this.mass);
-      this.velocity.add(acceleration);
-    }
-  }
-
-  class Vector {
-    constructor({ x, y }) {
-      this.x = x;
-      this.y = y;
-    }
-    add(vectorToBeAdded) {
-      if (typeof vectorToBeAdded === 'number') {
-        vectorToBeAdded = new Vector({ x: vectorToBeAdded, y: vectorToBeAdded });
-      }
-      this.x += vectorToBeAdded.x;
-      this.y += vectorToBeAdded.y;
-    }
-    reduce(vectorToBeReduced) {
-      if (typeof vectorToBeReduced === 'number') {
-        vectorToBeReduced = new Vector({ x: vectorToBeReduced, y: vectorToBeReduced });
-      }
-      this.x -= vectorToBeReduced.x;
-      this.y -= vectorToBeReduced.y;
-    }
-    divide(vectorToBeDivided) {
-      if (typeof vectorToBeDivided === 'number') {
-        vectorToBeDivided = new Vector({ x: vectorToBeDivided, y: vectorToBeDivided });
-      }
-      this.x /= vectorToBeDivided.x;
-      this.y /= vectorToBeDivided.y;
-    }
-  }
-
-  let entity;
+  let entity: Entity;
   let running = false;
   const size = 50;
   const border = 5;
@@ -56,15 +15,15 @@ const ForceContainer = () => {
     running = !running;
   };
 
-  const isXPositionInsideCanvas = (p5, x, entity) => {
+  const isXPositionInsideCanvas = (p5: any, x: number, entity: Entity) => {
     return x + entity.size / 2 < p5.width - border && x - entity.size / 2 > border;
   };
 
-  const isYPositionInsideCanvas = (p5, y, entity) => {
+  const isYPositionInsideCanvas = (p5: any, y: number, entity: Entity) => {
     return y + entity.size / 2 < p5.height - border && y - entity.size / 2 > border;
   };
 
-  const setup = (p5, parentRef) => {
+  const setup = (p5: any, parentRef: any) => {
     p5.createCanvas(800, 500).parent(parentRef);
     p5.frameRate(60);
     p5.noStroke();
@@ -85,7 +44,7 @@ const ForceContainer = () => {
     entity.applyForce(initialForce);
   };
 
-  const applyPhysics = p5 => {
+  const applyPhysics = (p5: any) => {
     if (!running) {
       return;
     }
@@ -106,7 +65,7 @@ const ForceContainer = () => {
     entity.position = newPosition;
   };
 
-  const draw = p5 => {
+  const draw = (p5: any) => {
     p5.background(0);
     p5.noStroke();
     if (p5.mouseIsPressed && !running) {
