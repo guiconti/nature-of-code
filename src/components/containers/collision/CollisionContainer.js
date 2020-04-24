@@ -19,13 +19,24 @@ const CollisionContainer = () => {
 
   const setup = (p5, parentRef) => {
     p5.createCanvas(800, 500).parent(parentRef);
-    p5.frameRate(30);
+    p5.frameRate(60);
+    const { height, width } = p5;
     // p5.noStroke();
-    firstEntity = new Entity(sizeOfSquare, 0, 0, { x: 0 + border, y: p5.height - sizeOfSquare - border });
-    secondEntity = new Entity(sizeOfSquare, 0, 0, {
-      x: p5.width - sizeOfSquare - border,
-      y: p5.height - sizeOfSquare - border,
-    });
+    firstEntity = new Entity(
+      sizeOfSquare,
+      1,
+      { x: 5, y: 0 },
+      { x: border, y: height - sizeOfSquare - border }
+    );
+    secondEntity = new Entity(
+      sizeOfSquare,
+      1,
+      { x: -5, y: 0 },
+      {
+        x: width - sizeOfSquare - border,
+        y: height - sizeOfSquare - border,
+      }
+    );
   };
 
   const draw = p5 => {
@@ -35,6 +46,10 @@ const CollisionContainer = () => {
     p5.fill(255);
     p5.square(firstEntity.position.x, firstEntity.position.y, secondEntity.size);
     p5.square(secondEntity.position.x, secondEntity.position.y, secondEntity.size);
+    firstEntity.position.x += firstEntity.velocity.x;
+    firstEntity.position.y += firstEntity.velocity.y;
+    secondEntity.position.x += secondEntity.velocity.x;
+    secondEntity.position.y += secondEntity.velocity.y;
   };
 
   return (
