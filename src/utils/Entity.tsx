@@ -1,16 +1,19 @@
 import Vector from './Vector';
+import Color from './Color';
 
 export default class Entity {
   size: number;
   mass: number;
   bounciness: number;
+  color: Color;
   velocity: Vector;
   position: Vector
 
-  constructor(size: number, mass: number, bounciness: number, velocity: Vector, position: Vector) {
+  constructor(size: number, mass: number, bounciness: number, color: Color, velocity: Vector, position: Vector) {
     this.size = size;
     this.mass = mass;
     this.bounciness = bounciness;
+    this.color = color;
     this.velocity = velocity;
     this.position = position;
   }
