@@ -3,12 +3,14 @@ import Vector from './Vector';
 export default class Entity {
   size: number;
   mass: number;
+  bounciness: number;
   velocity: Vector;
   position: Vector
 
-  constructor(size: number, mass: number, velocity: Vector, position: Vector) {
+  constructor(size: number, mass: number, bounciness: number, velocity: Vector, position: Vector) {
     this.size = size;
     this.mass = mass;
+    this.bounciness = bounciness;
     this.velocity = velocity;
     this.position = position;
   }
