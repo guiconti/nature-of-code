@@ -6,7 +6,9 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import createRootReducer from '../reducers';
 import rootSaga from '../sagas';
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+  basename: '/nature-of-code/',
+});
 const connectRouterHistory = connectRouter(history);
 const sagaMiddleware = createSagaMiddleware()
 
