@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = require('./serverProduction');
-const PORT = process.env.PORT;
+const PORT = 3102;
 
 app.listen(PORT, (error) => {
   if (error) {
