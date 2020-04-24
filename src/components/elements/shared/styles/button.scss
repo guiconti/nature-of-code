@@ -1,0 +1,17 @@
+@import '../../../../styles/colors.scss';
+
+.button {
+  color: $grey;
+  background-color: transparent;
+  border-radius: 8px;
+  border: 1px solid $grey;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  font-size: 2rem;
+
+  &:hover, &:active {
+    background-color: $grey;
+    color: white;
+  }
+}
