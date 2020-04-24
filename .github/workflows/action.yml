@@ -21,12 +21,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2.0.2
-        with:
-          key: ${{ secrets.SSHKey }}
-          name: id_rsa
-          know_hosts: ${{ secrets.KnownHosts }}
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2.0.2
+      with:
+        key: ${{ secrets.SSHKey }}
+        name: id_rsa
+        know_hosts: ${{ secrets.KnownHosts }}
     - run: npm i
     - run: npm run build --if-present
     - run: bash tools/deploy.sh "$DEPLOY_USERNAME" "$DEPLOY_HOST" ~/.ssh/id_rsa nature-of-code nature-of-code prod
