@@ -17,13 +17,15 @@ function configureStoreProd(initialState) {
     reactRouterMiddleware,
   ];
 
-  sagaMiddleware.run(rootSaga);
-
-  return createStore(
+  const store = createStore(
     createRootReducer(history), // root reducer with router state
     initialState,
     compose(applyMiddleware(...middlewares))
   );
+
+  sagaMiddleware.run(rootSaga);
+
+  return store;
 }
 
 function configureStoreDev(initialState) {
