@@ -7,7 +7,7 @@ export default class Entity {
   bounciness: number;
   color: Color;
   velocity: Vector;
-  position: Vector
+  position: Vector;
 
   constructor(size: number, mass: number, bounciness: number, color: Color, velocity: Vector, position: Vector) {
     this.size = size;
@@ -17,6 +17,7 @@ export default class Entity {
     this.velocity = velocity;
     this.position = position;
   }
+  
   applyForce(force: Vector) {
     //  F = m * a
     const acceleration = new Vector(force);
