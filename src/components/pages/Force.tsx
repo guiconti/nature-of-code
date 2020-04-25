@@ -7,7 +7,7 @@ import Color from '../../utils/Color';
 import Button from '../elements/shared/Button';
 import Input from '../elements/shared/Input';
 import Checkbox from '../elements/shared/Checkbox';
-import './styles/force.scss';
+import './styles/page.scss';
 
 const Force = () => {
   const [running, setRunning] = useState(false);
@@ -163,10 +163,10 @@ const Force = () => {
         showDirectionLines={showDirectionLines}
         running={running}
       />
-      <div className='force-form'>
+      <div className='form'>
         <Button onClick={toggleRunning}>Start/Stop</Button>
         {!running && (
-          <div className='force-input'>
+          <div className='inputs'>
             <Input
               label='Amount of Entities'
               placeholder='Amount of entities'
