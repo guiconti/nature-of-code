@@ -1,4 +1,5 @@
 import React from 'react';
+import Label from './Label';
 import './styles/input.scss';
 
 export interface InputProps {
@@ -11,7 +12,7 @@ export interface InputProps {
 const Input = ({label, ...rest }: InputProps) => {
   return (
     <div>
-      <label className='label'>{label}</label>
+      <Label>{label}</Label>
       <input type='text' className='input' {...rest} />
     </div>
   );

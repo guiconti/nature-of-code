@@ -6,6 +6,7 @@ import Vector from '../../utils/Vector';
 import Color from '../../utils/Color';
 import Button from '../elements/shared/Button';
 import Input from '../elements/shared/Input';
+import Checkbox from '../elements/shared/Checkbox';
 import './styles/force.scss';
 
 const Force = () => {
@@ -19,6 +20,7 @@ const Force = () => {
   const [maxForce, setMaxForce] = useState(2000);
   const [gravity, setGravity] = useState(new Vector({ x: 0, y: 0.3 }));
   const [width, setWidth] = useState(800);
+  const [showDirectionLines, setShowDirectionLines] = useState(true);
   const height = 600;
   const border = 5;
 
@@ -101,6 +103,10 @@ const Force = () => {
     );
   };
 
+  const onShowDirectionLinesChange = () => {
+    setShowDirectionLines(!showDirectionLines);
+  }
+
   const toggleRunning = () => {
     setRunning(!running);
     if (running) {
@@ -154,6 +160,7 @@ const Force = () => {
         border={border}
         gravity={gravity}
         entities={entities}
+        showDirectionLines={showDirectionLines}
         running={running}
       />
       <div className='force-form'>
@@ -207,6 +214,11 @@ const Force = () => {
               placeholder='Gravity Y'
               value={gravity.y}
               onChange={onGravityYChange}
+            />
+            <Checkbox
+              label='Show direction lines'
+              checked={showDirectionLines}
+              onChange={onShowDirectionLinesChange}
             />
           </div>
         )}

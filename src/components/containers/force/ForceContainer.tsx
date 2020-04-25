@@ -13,10 +13,11 @@ export interface ForceContainerProps {
   border: number;
   gravity: Vector;
   entities: Array<Entity> | null;
+  showDirectionLines: boolean;
   running: boolean;
 }
 
-const ForceContainer = ({ width, height, border, gravity, entities, running }: ForceContainerProps) => {
+const ForceContainer = ({ width, height, border, gravity, entities, showDirectionLines, running }: ForceContainerProps) => {
 
   const setup = (p5: any, parentRef: any) => {
     p5.createCanvas(width, height).parent(parentRef);
@@ -59,12 +60,14 @@ const ForceContainer = ({ width, height, border, gravity, entities, running }: F
       p5.fill(entity.color.formatted());
       p5.circle(entity.position.x, entity.position.y, entity.size);
       p5.strokeWeight(2);
-      p5.line(
-        entity.position.x,
-        entity.position.y,
-        entity.position.x + entity.velocity.x * 10,
-        entity.position.y + entity.velocity.y * 10
-      );
+      if (showDirectionLines) {
+        p5.line(
+          entity.position.x,
+          entity.position.y,
+          entity.position.x + entity.velocity.x * 10,
+          entity.position.y + entity.velocity.y * 10
+        );
+      }
     });
   };
 
