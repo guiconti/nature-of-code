@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../elements/shared/Header';
 import ForceContainer from '../containers/force/ForceContainer';
 import Entity from '../../utils/Entity';
@@ -18,9 +18,22 @@ const Force = () => {
   const [minBounciness, setMinBounciness] = useState(0.9);
   const [maxForce, setMaxForce] = useState(2000);
   const [gravity, setGravity] = useState(new Vector({ x: 0, y: 0.3 }));
-  const width = 800;
+  const [width, setWidth] = useState(800);
   const height = 600;
   const border = 5;
+
+  const handleWindowSize = () => {
+    if (window.innerWidth <= 768) {
+      setWidth(300);
+    } else {
+      setWidth(800);
+    }
+  }
+
+  useEffect(() => {
+    handleWindowSize();
+    window.addEventListener('resize', handleWindowSize);
+  }, []);
 
   const onAmountOfEntitiesChange = (event: any) => {
     if (!event || !event.target) {
