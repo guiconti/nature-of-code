@@ -85,12 +85,12 @@ const CollisionContainer = ({
           (entities[i].mass / entity.mass);
         entities[i].velocity.x +=
           accelerationX *
-          entities[i].bounciness *
+          entities[i].bounciness * 
           (entity.mass / entities[i].mass);
         entities[i].velocity.y +=
           accelerationY *
           entities[i].bounciness *
-          (entity.mass / entities[i].mass);
+          (entity.mass / entities[i].mass);;
       }
     }
   };

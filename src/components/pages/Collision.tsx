@@ -11,13 +11,15 @@ import './styles/page.scss';
 
 const Collision = () => {
   const [running, setRunning] = useState(false);
-  const [amountOfEntities, setAmountOfEntities] = useState(5);
+  const [amountOfEntities, setAmountOfEntities] = useState(3);
   const [entities, setEntities] = useState<Array<Entity> | null>(null);
-  const [maxSize, setMaxSize] = useState(60);
-  const [minSize, setMinSize] = useState(20);
-  const [maxBounciness, setMaxBounciness] = useState(0.95);
-  const [minBounciness, setMinBounciness] = useState(0.9);
-  const [maxForce, setMaxForce] = useState(2000);
+  const [maxSize, setMaxSize] = useState(200);
+  const [minSize, setMinSize] = useState(60);
+  const [maxMass] = useState(1);
+  const [minMass] = useState(0.6);
+  const [maxBounciness, setMaxBounciness] = useState(0.7);
+  const [minBounciness, setMinBounciness] = useState(0.4);
+  const [maxForce, setMaxForce] = useState(200);
   const [gravity, setGravity] = useState(new Vector({ x: 0, y: 0.3 }));
   const [width, setWidth] = useState(800);
   const [showDirectionLines, setShowDirectionLines] = useState(true);
@@ -30,7 +32,7 @@ const Collision = () => {
     } else {
       setWidth(800);
     }
-  }
+  };
 
   useEffect(() => {
     handleWindowSize();
@@ -105,7 +107,7 @@ const Collision = () => {
 
   const onShowDirectionLinesChange = () => {
     setShowDirectionLines(!showDirectionLines);
-  }
+  };
 
   const toggleRunning = () => {
     setRunning(!running);
@@ -115,20 +117,25 @@ const Collision = () => {
     setGravity(
       new Vector({
         x: parseFloat(String(gravity.x)),
-        y: parseFloat(String(gravity.y))
+        y: parseFloat(String(gravity.y)),
       })
-    )
+    );
+
     let newEntities: Array<Entity> = [];
     for (let i = 0; i < amountOfEntities; i++) {
-      const size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
-      const bounciness = Math.random() * (maxBounciness - minBounciness) + minBounciness;
+      const size =
+        Math.floor(Math.random() * (parseInt(String(maxSize)) - parseInt(String(minSize)))) +
+        parseInt(String(minSize));
+      const bounciness =
+        Math.random() * (parseFloat(String(maxBounciness)) - parseFloat(String(minBounciness))) +
+        parseFloat(String(minBounciness));
       const minPositionX = border + size / 2;
       const maxPositionX = width - border - size / 2;
       const minPositionY = border + size / 2;
       const maxPositionY = height - border - size / 2;
       newEntities[i] = new Entity(
         size,
-        size,
+        minMass + (maxMass - minMass) / (parseInt(String(maxSize)) / size),
         bounciness,
         new Color(
           Math.floor(Math.random() * 255),
@@ -143,8 +150,8 @@ const Collision = () => {
         })
       );
       let force = new Vector({
-        x: Math.floor(Math.random() * maxForce - maxForce),
-        y: Math.floor(Math.random() * maxForce - maxForce),
+        x: Math.floor(Math.random() * parseInt(String(maxForce)) - parseInt(String(maxForce))),
+        y: Math.floor(Math.random() * parseInt(String(maxForce)) - parseInt(String(maxForce))),
       });
       newEntities[i].applyForce(force);
     }
